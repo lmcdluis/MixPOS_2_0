@@ -1,0 +1,20 @@
+[
+  {
+    "path": "/login",
+    "component": "Login",
+    "layout": "LoginLayout",
+    "protected": false
+  },
+  {
+    "path": "/pos",
+    "component": "POSDashboard",
+    "layout": "POSDashboardLayout",
+    "protected": true
+  },
+  {
+    "path": "/admin",
+    "component": "AdminPanel",
+    "layout": "AdminPanelLayout",
+    "protected": true
+  }
+]

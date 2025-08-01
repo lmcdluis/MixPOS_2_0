@@ -1,6 +1,12 @@
 
 [
   {
+    "path": "/",
+    "component": "login",
+    "layout": "LoginLayout", 
+    "protected": false
+  },
+  {
     "path": "/login",
     "component": "login",
     "layout": "LoginLayout",

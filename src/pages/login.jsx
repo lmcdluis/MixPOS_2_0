@@ -56,7 +56,7 @@ const Login = () => {
             setCredentials({ ...credentials, compania: e.target.value });
           }}
         >
-          <option value="0" selected>
+          <option value="0" defaultValue>
             Select compania
           </option>
           <option value="201">201</option>

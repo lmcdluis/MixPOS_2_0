@@ -33,7 +33,7 @@ const App = () => {
         <Routes>
           {routes.map(({ path, component, layout, protected: isProtected }) => {
             const PageComponent = React.lazy(
-              () => import(`./pages/${component}.js`),
+              () => import(`./pages/${component}.jsx`),
             );
             const Layout = layouts[layout];
             const element = (

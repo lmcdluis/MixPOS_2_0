@@ -1,9 +1,9 @@
-import Nabvar from "../components/Navbar";
+import Navbar from "../components/Navbar";
 
 const PosDashboardPage = () => {
   return (
     <div>
-      <Nabvar />
+      <Navbar />
       <div className="container">
         <div className="row">
           <div className="col">

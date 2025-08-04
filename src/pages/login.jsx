@@ -52,7 +52,7 @@ const Login = () => {
         />
         <select
           className="form-select mb-2"
-          onSelect={(e) => {
+          onChange={(e) => {
             setCredentials({ ...credentials, compania: e.target.value });
           }}
         >

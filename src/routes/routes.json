@@ -13,8 +13,8 @@
   },
   {
     "path": "/pos",
-    "component": "PosDashboardPage",
-    "layout": "PosDashboardLayout",
+    "component": "PosDashboard",
+    "layout": "POSDashboardLayout",
     "protected": true
   }
 ]

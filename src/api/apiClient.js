@@ -7,7 +7,8 @@ const apiClient = {
     const headers = {};
     if (requiresAuth) {
       const token = localStorage.getItem('token');
-      if (token) headers['Authorization'] = `Bearer ${token}`;
+      if (!token) throw new Error('No existe un token válido');
+      headers['Authorization'] = `Bearer ${token}`;
     }
     const { data } = await axios.get(`${BASE_URL}${endpoint}`, { headers });
     return data;
@@ -17,7 +18,8 @@ const apiClient = {
     const headers = {};
     if (requiresAuth) {
       const token = localStorage.getItem('token');
-      if (token) headers['Authorization'] = `Bearer ${token}`;
+      if (!token) throw new Error('No existe un token válido');
+      headers['Authorization'] = `Bearer ${token}`;
     }
     const { data } = await axios.post(`${BASE_URL}${endpoint}`, body, { headers });
     return data;
@@ -25,3 +27,4 @@ const apiClient = {
 };
 
 export default apiClient;
+

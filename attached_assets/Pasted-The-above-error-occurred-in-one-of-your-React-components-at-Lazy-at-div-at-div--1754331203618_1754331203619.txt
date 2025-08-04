@@ -1,0 +1,27 @@
+The above error occurred in one of your React components:
+
+    at Lazy
+    at div
+    at div
+    at LoginLayout (https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/src/components/Layaouts/LoginLayout.jsx:18:24)
+    at RenderedRoute (https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/node_modules/.vite/deps/react-router-dom.js?v=a21cad89:5534:26)
+    at Routes (https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/node_modules/.vite/deps/react-router-dom.js?v=a21cad89:6271:3)
+    at Suspense
+    at Router (https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/node_modules/.vite/deps/react-router-dom.js?v=a21cad89:6214:13)
+    at BrowserRouter (https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/node_modules/.vite/deps/react-router-dom.js?v=a21cad89:9307:3)
+    at App (https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/src/App.jsx?t=1754331012872:34:20)
+    at Provider (https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/node_modules/.vite/deps/react-redux.js?v=a21cad89:935:11)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+Unknown variable dynamic import: ./pages/login.js
+at https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/@id/__x00__vite/dynamic-import-helper.js:7:96
+at new Promise (<anonymous>)
+at default (https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/@id/__x00__vite/dynamic-import-helper.js:6:12)
+at https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/src/App.jsx?t=1754331012872:47:13
+at lazyInitializer (https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/node_modules/.vite/deps/chunk-Y5IW5QF7.js?v=a21cad89:869:28)
+at mountLazyComponent (https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/node_modules/.vite/deps/chunk-LZC5C55R.js?v=a21cad89:14817:27)
+at beginWork (https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/node_modules/.vite/deps/chunk-LZC5C55R.js?v=a21cad89:15906:22)
+at beginWork$1 (https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/node_modules/.vite/deps/chunk-LZC5C55R.js?v=a21cad89:19749:22)
+at performUnitOfWork (https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/node_modules/.vite/deps/chunk-LZC5C55R.js?v=a21cad89:19194:20)
+at workLoopSync (https://4fa6f59e-73ff-4f96-a35e-49dba3e5348b-00-43vkm39ad7ac.picard.replit.dev/node_modules/.vite/deps/chunk-LZC5C55R.js?v=a21cad89:19133:13)

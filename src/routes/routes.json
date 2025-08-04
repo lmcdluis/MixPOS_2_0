@@ -1,9 +1,8 @@
-
 [
   {
     "path": "/",
     "component": "login",
-    "layout": "LoginLayout", 
+    "layout": "LoginLayout",
     "protected": false
   },
   {
@@ -11,5 +10,11 @@
     "component": "login",
     "layout": "LoginLayout",
     "protected": false
+  },
+  {
+    "path": "/pos",
+    "component": "PosDashboardPage",
+    "layout": "PosDashboardLayout",
+    "protected": true
   }
 ]

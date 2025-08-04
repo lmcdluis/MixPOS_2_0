@@ -7,7 +7,7 @@ const Login = () => {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
-    compania: "",
+    compania: 0,
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();

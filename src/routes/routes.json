@@ -14,7 +14,7 @@
   {
     "path": "/pos",
     "component": "PosDashboard",
-    "layout": "POSDashboard",
+    "layout": "POSDashboardLayout",
     "protected": true
   }
 ]

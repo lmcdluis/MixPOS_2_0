@@ -14,6 +14,19 @@ export const login = createAsyncThunk(
   },
 );
 
+// Async thunk for fetching user data
+export const fetchUser = createAsyncThunk(
+  "auth/fetchUser",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get("/api/user"); // Replace with your actual API endpoint
+      return response.data; // Assuming your API returns user data
+    } catch (error) {
+      return rejectWithValue(error.response.data); // Handle errors
+    }
+  },
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -42,6 +55,18 @@ const authSlice = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload.message || "Login failed";
+      })
+      .addCase(fetchUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload;
+      })
+      .addCase(fetchUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.message || "Failed to fetch user";
       });
   },
 });

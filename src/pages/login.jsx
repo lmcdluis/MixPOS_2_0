@@ -51,15 +51,19 @@ const Login = () => {
           required
         />
         <select
+          value={credentials.compania}
           className="form-select mb-2"
           onChange={(e) => {
-            setCredentials({ ...credentials, compania: e.target.value });
+            setCredentials({
+              ...credentials,
+              compania: Number(e.target.value),
+            });
           }}
         >
           <option value="0" defaultValue>
             Select compania
           </option>
-          <option value="201">201</option>
+          <option value={201}>201</option>
         </select>
         <button
           className="btn btn-primary w-100"

@@ -1,44 +1,35 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import apiClient from '../../api/apiClient';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios"; // Or your preferred HTTP client
 
-// LOGIN sin token
+// Async thunk for login
 export const login = createAsyncThunk(
-  'auth/login',
-  async (credentials, { dispatch }) => {
-    const response = await apiClient.post('/authenticate', credentials, false);
-    // Guardar token
-    localStorage.setItem('token', response.token);
-    // Ejecutar fetchUser después de login
-    await dispatch(fetchUser());
-    return response;
-  }
+  "auth/login",
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("/api/login", credentials); // Replace with your actual API endpoint
+      return response.data; // Assuming your API returns user data and token
+    } catch (error) {
+      return rejectWithValue(error.response.data); // Handle errors
+    }
+  },
 );
 
-// FETCH USER con token
-export const fetchUser = createAsyncThunk('auth/fetchUser', async () => {
-  const response = await apiClient.get('/echoUser');
-  return response;
-});
-
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: {
-    token: localStorage.getItem('token') || null,
+    token: null,
     user: null,
     loading: false,
-    error: null
+    error: null,
   },
   reducers: {
     logout: (state) => {
       state.token = null;
       state.user = null;
-      state.error = null;
-      localStorage.removeItem('token');
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
-      // LOGIN
       .addCase(login.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -46,26 +37,13 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
         state.token = action.payload.token;
+        state.user = action.payload.user;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
-      })
-      // FETCH USER
-      .addCase(fetchUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.user = action.payload;
-      })
-      .addCase(fetchUser.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-        state.user = null;
+        state.error = action.payload.message || "Login failed";
       });
-  }
+  },
 });
 
 export const { logout } = authSlice.actions;

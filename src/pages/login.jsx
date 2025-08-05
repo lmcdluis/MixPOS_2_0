@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/slices/authSlice";
+import { login } from "../redux/slices/authSlice"; // Import the async thunk
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -11,21 +11,16 @@ const Login = () => {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const { token, user, loading, error } = useSelector((state) => state.auth);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(login(credentials));
+    await dispatch(login(credentials)); // Dispatch the async thunk
   };
-
-  // Si ya está logueado (token y user), redirigir al POS
   useEffect(() => {
     if (token && user) {
       navigate("/pos");
     }
   }, [token, user, navigate]);
-
   return (
     <div className="card p-4 shadow-sm">
       <h2 className="mb-3 text-center">Iniciar sesión</h2>
@@ -74,5 +69,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;

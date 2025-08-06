@@ -7,9 +7,12 @@ export const login = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await axios.post("/api/login", credentials); // Replace with your actual API endpoint
-      return response; // Assuming your API returns user data and token
+      return response.data; // Return only the serializable data
     } catch (error) {
-      return rejectWithValue(error.response); // Handle errors
+      return rejectWithValue({
+        message: error.response?.data?.message || error.message || 'Login failed',
+        status: error.response?.status
+      });
     }
   },
 );
@@ -22,7 +25,10 @@ export const fetchUser = createAsyncThunk(
       const response = await axios.get("/api/user"); // Replace with your actual API endpoint
       return response.data; // Assuming your API returns user data
     } catch (error) {
-      return rejectWithValue(error.response.data); // Handle errors
+      return rejectWithValue({
+        message: error.response?.data?.message || error.message || 'Failed to fetch user',
+        status: error.response?.status
+      });
     }
   },
 );
@@ -54,7 +60,7 @@ const authSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload.message || "Login failed";
+        state.error = action.payload?.message || "Login failed";
       })
       .addCase(fetchUser.pending, (state) => {
         state.loading = true;
@@ -66,7 +72,7 @@ const authSlice = createSlice({
       })
       .addCase(fetchUser.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload.message || "Failed to fetch user";
+        state.error = action.payload?.message || "Failed to fetch user";
       });
   },
 });

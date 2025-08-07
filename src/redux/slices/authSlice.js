@@ -1,17 +1,23 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios"; // Or your preferred HTTP client
+import apiClient from "../../api/apiClient";
 
 // Async thunk for login
 export const login = createAsyncThunk(
   "auth/login",
   async (credentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post("/api/login", credentials); // Replace with your actual API endpoint
-      return response.data; // Return only the serializable data
+      const response = await apiClient.post(
+        "/authenticate",
+        credentials,
+        false,
+      ); // Replace with your actual API endpoint
+      console.log("response", response);
+      return response; // Return only the serializable data
     } catch (error) {
       return rejectWithValue({
-        message: error.response?.data?.message || error.message || 'Login failed',
-        status: error.response?.status
+        message:
+          error.response?.data?.message || error.message || "Login failed",
+        status: error.response?.status,
       });
     }
   },
@@ -22,12 +28,16 @@ export const fetchUser = createAsyncThunk(
   "auth/fetchUser",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("/api/user"); // Replace with your actual API endpoint
+      const response = await apiClient.get("/echouser"); // Replace with your actual API endpoint
+      console.log("response-user", response.data);
       return response.data; // Assuming your API returns user data
     } catch (error) {
       return rejectWithValue({
-        message: error.response?.data?.message || error.message || 'Failed to fetch user',
-        status: error.response?.status
+        message:
+          error.response?.data?.message ||
+          error.message ||
+          "Failed to fetch user",
+        status: error.response?.status,
       });
     }
   },

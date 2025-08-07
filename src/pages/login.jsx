@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
-    username: "",
+    usuario: "",
     password: "",
     compania: 0,
   });
@@ -29,9 +29,9 @@ const Login = () => {
         <input
           className="form-control mb-2"
           placeholder="Usuario"
-          value={credentials.username}
+          value={credentials.usuario}
           onChange={(e) =>
-            setCredentials({ ...credentials, username: e.target.value })
+            setCredentials({ ...credentials, usuario: e.target.value })
           }
           required
         />

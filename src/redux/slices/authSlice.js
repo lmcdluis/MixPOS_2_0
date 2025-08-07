@@ -10,9 +10,14 @@ export const login = createAsyncThunk(
         "/authenticate",
         credentials,
         false,
-      ); // Replace with your actual API endpoint
+      );
       console.log("response", response);
-      return response; // Return only the serializable data
+      
+      // Save token to localStorage
+      localStorage.setItem('token', response);
+      
+      // Return the token
+      return { token: response };
     } catch (error) {
       return rejectWithValue({
         message:
@@ -46,13 +51,14 @@ export const fetchUser = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    token: null,
-    user: null,
+    token: localStorage.getItem('token'),
+    user: localStorage.getItem('token') ? { authenticated: true } : null,
     loading: false,
     error: null,
   },
   reducers: {
     logout: (state) => {
+      localStorage.removeItem('token');
       state.token = null;
       state.user = null;
     },
@@ -66,7 +72,8 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
         state.token = action.payload.token;
-        state.user = action.payload.user;
+        // We'll fetch user data separately after login
+        state.user = { authenticated: true };
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;

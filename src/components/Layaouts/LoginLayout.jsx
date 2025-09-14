@@ -1,9 +1,10 @@
-// LoginLayout.js
-import React from "react";
-
 const LoginLayout = ({ children }) => (
-  <div className="container d-flex align-items-start justify-content-center vh-100">
-    <div className="col-md-4">{children}</div>
+  <div className="contain-fluid h-100 login-layout">
+    <div className="row">
+      <div className="col-lg-4 col-md-6 mx-auto">
+        <div className="">{children}</div>
+      </div>
+    </div>
   </div>
 );
 

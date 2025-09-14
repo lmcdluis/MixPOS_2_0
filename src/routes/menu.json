@@ -1,0 +1,169 @@
+[
+  {
+    "title": "Dashboard",
+    "icon": "bi bi-speedometer",
+    "path": "/pos"
+  },
+  {
+    "title": "Productos",
+    "icon": "bi bi-box-seam",
+    "path": "/productos",
+    "children": [
+      {
+        "title": "Medicamentos",
+        "path": "/productos/medicamentos",
+        "icon": "bi bi-capsule"
+      },
+      {
+        "title": "Generales",
+        "path": "/productos/generales",
+        "icon": "bi bi-basket3"
+      },
+      {
+        "title": "Categorías",
+        "path": "/productos/categorias",
+        "icon": "bi bi-tags"
+      },
+      {
+        "title": "Lotes",
+        "path": "/productos/lotes",
+        "icon": "bi bi-calendar-x"
+      }
+    ]
+  },
+  {
+    "title": "Inventario",
+    "icon": "bi bi-clipboard-data",
+    "path": "/inventario",
+    "children": [
+      {
+        "title": "Entradas de Productos",
+        "path": "/inventario/entradas"
+      },
+      {
+        "title": "Ajustes de Stock",
+        "path": "/inventario/ajustes"
+      },
+      {
+        "title": "Transferencias",
+        "path": "/inventario/transferencias"
+      },
+      {
+        "title": "Alertas de Vencimiento",
+        "path": "/inventario/vencimiento"
+      }
+    ]
+  },
+  {
+    "title": "Clientes",
+    "icon": "bi bi-person-vcard",
+    "path": "/clientes",
+    "children": [
+      {
+        "title": "Registro de Clientes",
+        "path": "/clientes/registro"
+      },
+      {
+        "title": "Historial de Compras",
+        "path": "/clientes/historial"
+      },
+      {
+        "title": "Cuentas por Cobrar",
+        "path": "/clientes/cxc"
+      },
+      {
+        "title": "Lealtad y Puntos",
+        "path": "/clientes/lealtad"
+      }
+    ]
+  },
+  {
+    "title": "Proveedores",
+    "icon": "bi bi-truck",
+    "path": "/proveedores",
+    "children": [
+      {
+        "title": "Catálogo de Proveedores",
+        "path": "/proveedores/catalogo"
+      },
+      {
+        "title": "Órdenes de Compra",
+        "path": "/proveedores/ordenes"
+      },
+      {
+        "title": "Cuentas por Pagar",
+        "path": "/proveedores/cxp"
+      }
+    ]
+  },
+  {
+    "title": "Usuarios",
+    "icon": "bi bi-people",
+    "path": "/usuarios",
+    "children": [
+      {
+        "title": "Gestión de Empleados",
+        "path": "/usuarios/empleados"
+      },
+      {
+        "title": "Roles y Permisos",
+        "path": "/usuarios/roles"
+      },
+      {
+        "title": "Registro de Sesiones",
+        "path": "/usuarios/sesiones"
+      }
+    ]
+  },
+  {
+    "title": "Reportes",
+    "icon": "bi bi-bar-chart",
+    "path": "/reportes",
+    "children": [
+      {
+        "title": "Ventas",
+        "path": "/reportes/ventas"
+      },
+      {
+        "title": "Inventario",
+        "path": "/reportes/inventario"
+      },
+      {
+        "title": "Clientes",
+        "path": "/reportes/clientes"
+      },
+      {
+        "title": "Márgenes de Ganancia",
+        "path": "/reportes/ganancia"
+      }
+    ]
+  },
+  {
+    "title": "Configuración",
+    "icon": "bi bi-gear",
+    "path": "/configuracion",
+    "children": [
+      {
+        "title": "Datos de la Farmacia",
+        "path": "/configuracion/datos"
+      },
+      {
+        "title": "Dispositivos e Impresoras",
+        "path": "/configuracion/dispositivos"
+      },
+      {
+        "title": "Métodos de Pago",
+        "path": "/configuracion/pagos"
+      },
+      {
+        "title": "Impuestos y Descuentos",
+        "path": "/configuracion/impuestos"
+      },
+      {
+        "title": "Respaldo y Restauración",
+        "path": "/configuracion/respaldo"
+      }
+    ]
+  }
+]
+

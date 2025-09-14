@@ -11,7 +11,6 @@ export const login = createAsyncThunk(
         credentials,
         false,
       );
-      console.log("response", response);
       
       // Save token to localStorage
       localStorage.setItem('token', response);

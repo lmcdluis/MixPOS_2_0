@@ -1,2 +1,57 @@
-main {
+.login-layout {
+    background-color: #f8f9fa;
+    background-image: url('../src/assets/img/shopping.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 10rem 2rem 2rem 2rem;
+    min-height: 100vh;
+}
+
+.card-login {
+    backdrop-filter: blur(10px);
+    border: 0;
+    background: #FFF;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.59) 100%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 0%);
+}
+
+.side-bar{
+    max-width: 240px;
+    background-color: #05434c;
+    color: #fff;
+}
+
+.submenu-item {
+    padding: 0.25rem 1rem;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    border-radius: 10px;
+}
+
+.main-menu-item {
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    border-radius: 35px;
+}
+
+.main-menu-item:hover {
+    background-color: rgb(118, 184, 51);
+    color: #05434c !important;
+}
+
+.avatar{
+    width: 35px;
+    height: 35px;
+    background-color: teal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.avatar span{
+    color: white;
 }

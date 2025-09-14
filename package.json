@@ -21,9 +21,14 @@
     "vite": "^5.0.0"
   },
   "dependencies": {
+    "@material/ripple": "^14.0.0",
+    "@materialstyle/materialstyle": "^3.1.1",
+    "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.11.0",
     "bootstrap": "^5.3.7",
+    "bootstrap-icons": "^1.13.1",
+    "jwt-decode": "^4.0.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.7.1",
     "redux": "^5.0.1"

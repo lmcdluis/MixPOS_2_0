@@ -1,15 +1,8 @@
-import Navbar from "../components/Navbar";
-
 const PosDashboardPage = () => {
   return (
-    <div>
-      <Navbar />
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <h1>POS Dashboard Page</h1>
-          </div>
-        </div>
+    <div className="container">
+      <div className="row">
+        
       </div>
     </div>
   );

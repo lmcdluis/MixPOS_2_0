@@ -1,10 +1,16 @@
+import { Link } from "react-router-dom";
+// import LogoutButton from "./LogoutButton";
+import ProfileMenu from "./ProfileMenu";
+
 const Navbar = () => {
   return (
-    <nav className="navbar bg-body-tertiary">
+    <nav className="navbar fixed-top bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Navbar MixPOS
-        </a>
+        <Link to="/" className="h3">MixPOS</Link>
+        <div className="navbar-nav ms-auto">
+          {/* <LogoutButton /> */}
+          <ProfileMenu />
+        </div>
       </div>
     </nav>
   );

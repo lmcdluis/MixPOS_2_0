@@ -17,10 +17,15 @@
 
 .side-bar{
     max-width: 240px;
-    background-color: #05434cda;
+    background-color: #05434c;
     color: #fff;
-    backdrop-filter: blur(10px);
+    border-radius: 0 20px 20px 0;
+}
 
+@media screen and (max-width: 480px) {
+    .side-bar{
+        display: none;
+    }
 }
 
 .submenu-item {

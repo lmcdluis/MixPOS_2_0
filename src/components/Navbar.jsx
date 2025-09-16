@@ -6,7 +6,8 @@ const Navbar = () => {
   return (
     <nav className="navbar fixed-top bg-body-tertiary">
       <div className="container-fluid">
-        <Link to="/" className="h3">MixPOS</Link>
+        
+        {/* <Link to="/" className="h3">MixPOS</Link> */}
         <div className="navbar-nav ms-auto">
           {/* <LogoutButton /> */}
           <ProfileMenu />

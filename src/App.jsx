@@ -5,6 +5,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "./redux/slices/authSlice";
 
+
 // Layouts
 import LoginLayout from "./components/Layaouts/LoginLayout";
 import POSDashboardLayout from "./components/Layaouts/PosDashboard";

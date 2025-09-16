@@ -17,8 +17,10 @@
 
 .side-bar{
     max-width: 240px;
-    background-color: #05434c;
+    background-color: #05434cda;
     color: #fff;
+    backdrop-filter: blur(10px);
+
 }
 
 .submenu-item {

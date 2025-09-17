@@ -1,10 +1,22 @@
 import { useState, useEffect } from "react";
 import { getUserFromToken } from "../utils/getUserFromToken";
-import { Avatar, Button, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+import {
+  Avatar,
+  Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  IconButton,
+  Tooltip
+} from "@chakra-ui/react";
+import { useLogout } from "../utils/useLogout";
 const ProfileMenu = () => {
   const user = getUserFromToken();
   const [nameUser, setNameUser] = useState("Usuario");
   const [dateTime, setDateTime] = useState(new Date());
+
+  const logout = useLogout();
 
   useEffect(() => {
     setNameUser(user?.unique_name);
@@ -25,8 +37,16 @@ const ProfileMenu = () => {
   };
   return (
     <div className="d-flex align-items-center">
-        <Button rightIcon={<i className="bi bi-bell"></i>} className="me-2">Notificaciones</Button>
-      <Avatar name={nameUser} className="text-white" />
+      <Tooltip label="Notificaciones" placement="bottom" aria-label="Notificaciones">
+        <IconButton
+          icon={<i className="bi bi-bell"></i>}
+          aria-label="Notificaciones"
+          className="me-2"
+        />
+      </Tooltip>
+      <Tooltip label={nameUser} placement="bottom" aria-label={nameUser}>
+        <Avatar name={nameUser} className="text-white" />
+      </Tooltip>
       <div className="mx-2">
         <strong className="text-capitalize">{nameUser}</strong>
         <div>
@@ -39,7 +59,7 @@ const ProfileMenu = () => {
         </MenuButton>
         <MenuList>
           <MenuItem>Perfil</MenuItem>
-          <MenuItem>Cerrar sesión</MenuItem>
+          <MenuItem onClick={logout}>Cerrar sesión</MenuItem>
         </MenuList>
       </Menu>
     </div>

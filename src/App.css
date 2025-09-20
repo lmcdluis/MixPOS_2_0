@@ -19,7 +19,7 @@
     max-width: 240px;
     background-color: #05434c;
     color: #fff;
-    border-radius: 0 20px 20px 0;
+    /* border-radius: 0 20px 20px 0; */
 }
 
 @media screen and (max-width: 480px) {
@@ -61,4 +61,12 @@
 
 .avatar span{
     color: white;
+}
+
+.welcome-user{
+    margin-top: 4rem;
+}
+
+.dashboard-container {
+    padding: 10px;
 }

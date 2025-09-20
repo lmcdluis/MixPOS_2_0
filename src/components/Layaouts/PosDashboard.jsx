@@ -2,21 +2,26 @@
 import React from "react";
 import Navbar from "../Navbar";
 import SideBar from "../SideBar";
+import WelcomeUser from "./WelcomeUser";
 
-const PosDashboardLayout = ({ children }) => (
-  <div className="">
-    <Navbar />
-    <div className="container-fluid">
-      <div className="row">
+const PosDashboardLayout = ({ children }) => {
+
+  return (
+    <div className="">
+      <div className="container-fluid">
+        <div className="row">
           <SideBar />
-        <div className="col">
-          <div className="container d-flex align-items-center justify-content-center vh-100">
-          <div className="col-md-4">{children}</div>
-        </div>
+           <Navbar />
+          <div className="col px-0">
+            <div className="container bg-light min-vh-100 dashboard-container">
+              <WelcomeUser/>
+              <div className="">{children}</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default PosDashboardLayout;

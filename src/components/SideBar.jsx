@@ -17,7 +17,7 @@ const SideBar = () => {
   };
 
   return (
-    <div className="col-lg-3">
+    <div className="col-lg-2">
       <div
         className="offcanvas offcanvas-start show side-bar"
         id="offcanvas"
@@ -49,7 +49,9 @@ const SideBar = () => {
                       </span>
                       <i
                         className={`bi ${
-                          openMenu === index ? "bi-chevron-up" : "bi-chevron-down"
+                          openMenu === index
+                            ? "bi-chevron-up"
+                            : "bi-chevron-down"
                         }`}
                       ></i>
                     </button>
@@ -64,8 +66,11 @@ const SideBar = () => {
                               className="d-flex align-items-center text-decoration-none"
                             >
                               <span>
-                                {subItem.icon && <i className={`${subItem.icon} me-2`}></i>}
-                                {subItem.title}</span>
+                                {subItem.icon && (
+                                  <i className={`${subItem.icon} me-2`}></i>
+                                )}
+                                {subItem.title}
+                              </span>
                             </Link>
                           </li>
                         ))}

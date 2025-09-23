@@ -4,7 +4,7 @@ import ProfileMenu from "./ProfileMenu";
 
 const Navbar = () => {
   return (
-    <nav className="navbar fixed-top bg-white border-bottom">
+    <nav className="navbar fixed-top main-navbar border-bottom">
       <div className="container-fluid">
         
         {/* <Link to="/" className="h3">MixPOS</Link> */}

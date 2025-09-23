@@ -8,6 +8,12 @@
     min-height: 100vh;
 }
 
+.main-navbar{
+    background-color: #ffffff7c;
+    background: #FFF;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.59) 100%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 0%);
+}
+
 .card-login {
     backdrop-filter: blur(10px);
     border: 0;

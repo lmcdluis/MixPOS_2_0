@@ -80,6 +80,7 @@ const Login = () => {
           >
             <option value="0">Selecione compañia</option>
             <option value={201}>Farmacia</option>
+            <option value={147}>Farmacia2</option>
           </select>
           <label htmlFor="compania">Compañía</label>
         </div>

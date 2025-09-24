@@ -1,8 +1,7 @@
 // PosDashboard.jsx
-import React from "react";
 import Navbar from "../Navbar";
 import SideBar from "../SideBar";
-import WelcomeUser from "./WelcomeUser";
+import WelcomeUser from "../WelcomeUser";
 
 const PosDashboardLayout = ({ children }) => {
 

@@ -43,6 +43,7 @@ const DynamicBreadcrumb = () => {
               as={RouterLink}
               to={to}
               fontWeight={isLast ? "bold" : "normal"}
+              color={isLast ? "teal.600" : "gray.600"}
             >
               {label}
             </BreadcrumbLink>

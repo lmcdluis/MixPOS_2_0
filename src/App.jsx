@@ -1,10 +1,9 @@
 import React, { Suspense, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import routes from "./routes/routes.json";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "./redux/slices/authSlice";
-
 
 // Layouts
 import LoginLayout from "./components/Layaouts/LoginLayout";
@@ -34,7 +33,7 @@ const App = () => {
         <Routes>
           {routes.map(({ path, component, layout, protected: isProtected }) => {
             const PageComponent = React.lazy(
-              () => import(`./pages/${component}.jsx`),
+              () => import(`./pages/${component}.jsx`)
             );
             const Layout = layouts[layout];
             const element = (
@@ -56,6 +55,9 @@ const App = () => {
               />
             );
           })}
+
+          {/* 👇 Ruta catch-all: redirige al inicio */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
     </Router>

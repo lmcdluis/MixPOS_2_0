@@ -16,5 +16,11 @@
     "component": "PosDashboard",
     "layout": "POSDashboardLayout",
     "protected": true
+  },
+  {
+    "path": "/productos/medicamentos",
+    "component": "medicamentos",
+    "layout": "POSDashboardLayout",
+    "protected": true
   }
 ]

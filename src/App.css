@@ -35,14 +35,13 @@
 }
 
 .submenu-item {
-    padding: 0.25rem 1rem;
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
-    border-radius: 10px;
+    border-radius: 35px;
 }
 
-.main-menu-item {
+.main-menu-item, .submenu-item a {
     padding: 0.75rem 1rem;
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
@@ -50,10 +49,11 @@
     border-radius: 35px;
 }
 
-.main-menu-item:hover {
+.main-menu-item:hover, .active-link, .submenu-item:hover a, .submenu-item.active-link {
     background-color: rgb(118, 184, 51);
     color: #05434c !important;
 }
+
 
 .avatar{
     width: 35px;
@@ -75,4 +75,8 @@
 
 .dashboard-container {
     padding: 10px;
+}
+
+.name-user {
+    color: teal;
 }

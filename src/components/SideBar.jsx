@@ -1,35 +1,67 @@
 import MainLogo from "./MainLogo";
 import menuData from "../routes/menu.json"; // Ajusta la ruta si es necesario
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import LogoutButton from "./LogoutButton";
+import apiClient from "../api/apiClient";
+import { Skeleton, Stack } from "@chakra-ui/react";
 
 const SideBar = () => {
   const [menu, setMenu] = useState([]);
   const [openMenu, setOpenMenu] = useState(null);
-
+  const location = useLocation();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  // 👉 Cargar el menú desde el JSON al montar el componente
   useEffect(() => {
-    setMenu(menuData);
+    const fetchMenu = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await apiClient.get("/api/Menu/getMenu", true);
+        setMenu(data);
+      } catch (err) {
+        setError("Error al cargar el menú");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMenu();
   }, []);
+
+  // 👉 Mantener abierto el submenú si la ruta coincide con algún hijo
+  useEffect(() => {
+    menu.forEach((item, index) => {
+      if (
+        item.children &&
+        item.children.some((subItem) => subItem.path === location.pathname)
+      ) {
+        setOpenMenu(index);
+      }
+    });
+  }, [location.pathname, menu]);
 
   const toggleSubmenu = (index) => {
     setOpenMenu(openMenu === index ? null : index);
   };
 
   return (
-    <div className="col-lg-2">
-      <div
-        className="offcanvas offcanvas-start show side-bar"
-        id="offcanvas"
-        aria-labelledby="offcanvasLabel"
-        data-bs-scroll="true"
-      >
-        {/* Logo */}
-        <div className="offcanvas-header d-flex justify-content-center">
-          <div>
-            <MainLogo size={"small"} linked />
+    <>
+      {loading && <Stack><Skeleton height={"20px"}/></Stack>}
+      <div className="col-lg-2">
+        <div
+          className="offcanvas offcanvas-start show side-bar"
+          id="offcanvas"
+          aria-labelledby="offcanvasLabel"
+          data-bs-scroll="true"
+        >
+          {/* Logo */}
+          <div className="offcanvas-header d-flex justify-content-center">
+            <div>
+              <MainLogo size={"small"} linked />
+            </div>
           </div>
-        </div>
 
         {/* Menú */}
         <div className="offcanvas-body">
@@ -61,17 +93,19 @@ const SideBar = () => {
                       <ul className="list-unstyled ps-4 mt-2 p-2">
                         {item.children.map((subItem, subIndex) => (
                           <li key={subIndex} className="mb-1 submenu-item">
-                            <Link
+                            <NavLink
                               to={subItem.path}
-                              className="d-flex align-items-center text-decoration-none"
+                              className={({ isActive }) =>
+                                `d-flex align-items-center text-decoration-none ${
+                                  isActive ? "active-link" : "text-white"
+                                }`
+                              }
                             >
-                              <span>
-                                {subItem.icon && (
-                                  <i className={`${subItem.icon} me-2`}></i>
-                                )}
-                                {subItem.title}
-                              </span>
-                            </Link>
+                              {subItem.icon && (
+                                <i className={`${subItem.icon} me-2`}></i>
+                              )}
+                              {subItem.title}
+                            </NavLink>
                           </li>
                         ))}
                       </ul>
@@ -79,13 +113,17 @@ const SideBar = () => {
                   </>
                 ) : (
                   // Menú simple (sin hijos)
-                  <Link
+                  <NavLink
                     to={item.path}
-                    className="btn d-flex align-items-center text-decoration-none text-white main-menu-item"
+                    className={({ isActive }) =>
+                      `btn d-flex align-items-center text-decoration-none main-menu-item ${
+                        isActive ? "active-link" : "text-white"
+                      }`
+                    }
                   >
                     {item.icon && <i className={`${item.icon} me-2`}></i>}
                     <span>{item.title}</span>
-                  </Link>
+                  </NavLink>
                 )}
               </li>
             ))}
@@ -96,6 +134,7 @@ const SideBar = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

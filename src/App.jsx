@@ -9,6 +9,7 @@ import { fetchUser } from "./redux/slices/authSlice";
 import LoginLayout from "./components/Layaouts/LoginLayout";
 import POSDashboardLayout from "./components/Layaouts/PosDashboard";
 import AdminPanelLayout from "./components/Layaouts/AdminPanelLayout";
+import useTokenValidator from "./utils/useTokenValidator";
 
 const layouts = {
   LoginLayout,

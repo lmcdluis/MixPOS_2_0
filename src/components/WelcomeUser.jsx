@@ -17,7 +17,7 @@ const WelcomeUser = () => {
 
   return (
     <div className="welcome-user">
-      <Card rounded={"lg"}>
+      <Card rounded={"lg"} className="frozen-card">
         <CardBody>
           {pathname === "/pos" ? (
             <>

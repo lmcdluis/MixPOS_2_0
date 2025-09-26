@@ -1,24 +1,49 @@
 import CardInfo from "../components/CardInfo";
-import { useEffect } from "react";
-import useProducto from "../utils/useProduct"; // asegúrate que el hook se llame así
+import { useEffect, useState } from "react";
+import apiClient from "../api/apiClient";
+import SkeletonCard from "../components/SkeletonCard";
 
 const PosDashboardPage = ({ id }) => {
-  // 👇 si no viene un id, usamos 1 como valor por defecto
-  const productId = id ?? 1;
+  const [productos, setProductos] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const { producto, loading, error } = useProducto(productId);
+  const getProductos = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await apiClient.get(
+        "/api/Producto/obtenerProductosActivos",
+        true
+      );
+      if (response) {
+        //  const data = await response.json();
+        setProductos(response);
+      } else {
+        setError("Error al cargar los productos");
+      }
+    } catch (error) {
+      setError("Error al cargar los productos", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    console.log("Products value", producto);
-  }, [producto]);
+    getProductos();
+  }, []);
 
   return (
     <div className="container">
       <div className="row mt-3">
         <div className="col-md-3">
-          {loading && <p>Cargando...</p>}
-          {error && <p style={{ color: "red" }}>{error}</p>}
-          {producto && <CardInfo />}
+          {loading ? (
+            <SkeletonCard />
+          ) : productos ? (
+            <CardInfo title="Productos" value={productos.length} />
+          ) : (
+            <p>{error || "No hay productos"}</p>
+          )}
         </div>
       </div>
     </div>

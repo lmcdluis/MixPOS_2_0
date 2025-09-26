@@ -12,7 +12,7 @@ const PosDashboardLayout = ({ children }) => {
           <SideBar />
            <Navbar />
           <div className="col px-0">
-            <div className="container bg-light min-vh-100 dashboard-container">
+            <div className="container min-vh-100 dashboard-container">
               <WelcomeUser/>
               <div className="">{children}</div>
             </div>

@@ -8,10 +8,28 @@
     min-height: 100vh;
 }
 
-.main-navbar{
-    background-color: #ffffff7c;
-    background: #FFF;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.59) 100%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 0%);
+.main-navbar, .frozen-card {
+background: rgba(255, 255, 255, 0.47) !important;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+backdrop-filter: blur(8.1px) !important;
+-webkit-backdrop-filter: blur(8.1px) !important;
+border: 1px solid rgba(255, 255, 255, 1) !important;
+}
+
+.icon-button-overlay-frozen{
+    background-color: #f9f9f9bb !important;
+    border: 1px solid #fff !important;
+    color: teal !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+    -webkit-transition: all 0.3s ease !important;
+    -moz-transition: all 0.3s ease !important;  
+}
+
+.icon-button-overlay-frozen:hover{
+    background-color: #ffffffc1 !important;
+    color: teal !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2) !important;
 }
 
 .card-login {
@@ -21,7 +39,7 @@
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.59) 100%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 0%);
 }
 
-.side-bar{
+.side-bar {
     max-width: 240px;
     background-color: #05434c;
     color: #fff;
@@ -29,9 +47,19 @@
 }
 
 @media screen and (max-width: 480px) {
-    .side-bar{
+    .side-bar {
         display: none;
     }
+}
+
+.dashboard-container {
+    background: #87d0ed;
+    background: -webkit-linear-gradient(0deg, rgba(135, 208, 237, 1) 0%, rgba(250, 250, 250, 1) 100%);
+    background: -moz-linear-gradient(0deg, rgba(135, 208, 237, 1) 0%, rgba(250, 250, 250, 1) 100%);
+    background: linear-gradient(0deg, rgba(135, 208, 237, 1) 0%, rgba(250, 250, 250, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#87D0ED",
+            endColorstr="#FAFAFA",
+            GradientType=0);
 }
 
 .submenu-item {
@@ -41,7 +69,8 @@
     border-radius: 35px;
 }
 
-.main-menu-item, .submenu-item a {
+.main-menu-item,
+.submenu-item a {
     padding: 0.75rem 1rem;
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
@@ -49,13 +78,16 @@
     border-radius: 35px;
 }
 
-.main-menu-item:hover, .active-link, .submenu-item:hover a, .submenu-item.active-link {
+.main-menu-item:hover,
+.active-link,
+.submenu-item:hover a,
+.submenu-item.active-link {
     background-color: rgb(118, 184, 51);
     color: #05434c !important;
 }
 
 
-.avatar{
+.avatar {
     width: 35px;
     height: 35px;
     background-color: teal;
@@ -65,11 +97,11 @@
     border-radius: 50%;
 }
 
-.avatar span{
+.avatar span {
     color: white;
 }
 
-.welcome-user{
+.welcome-user {
     margin-top: 4rem;
 }
 

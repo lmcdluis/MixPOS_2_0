@@ -8,7 +8,8 @@ import {
   MenuList,
   MenuItem,
   IconButton,
-  Tooltip
+  Tooltip,
+  AvatarBadge
 } from "@chakra-ui/react";
 import { useLogout } from "../utils/useLogout";
 const ProfileMenu = () => {
@@ -45,7 +46,9 @@ const ProfileMenu = () => {
         />
       </Tooltip>
       <Tooltip label={nameUser} placement="bottom" aria-label={nameUser}>
-        <Avatar name={nameUser} className="text-white" />
+        <Avatar name={nameUser} className="text-white" bg="teal.500" size="md">
+          <AvatarBadge boxSize='0.85em' bg='green.500' />
+        </Avatar>
       </Tooltip>
       <div className="mx-2">
         <strong className="text-capitalize">{nameUser}</strong>

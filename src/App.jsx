@@ -8,13 +8,13 @@ import { fetchUser } from "./redux/slices/authSlice";
 // Layouts
 import LoginLayout from "./components/Layaouts/LoginLayout";
 import POSDashboardLayout from "./components/Layaouts/PosDashboard";
-import AdminPanelLayout from "./components/Layaouts/AdminPanelLayout";
-import useTokenValidator from "./utils/useTokenValidator";
+// import AdminPanelLayout from "./components/Layaouts/AdminPanelLayout";
+// import useTokenValidator from "./utils/useTokenValidator";
 
 const layouts = {
   LoginLayout,
   POSDashboardLayout,
-  AdminPanelLayout,
+  // AdminPanelLayout,
 };
 
 const App = () => {

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import mainLogo from "../assets/img/mix-pos-proto.png"; // Adjust the path as necessary
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const [credentials, setCredentials] = useState({
     usuario: "",
     password: "",
@@ -17,6 +18,12 @@ const Login = () => {
     e.preventDefault();
     await dispatch(login(credentials)); // Dispatch the async thunk
   };
+
+  const companies = [
+    { shopName: "Seleccionar Tienda", id: 0 },
+    { shopName: "Tienda 1", id: 201, icon: "bi bi-shop" },
+    { shopName: "Tienda 2", id: 147, icon: "bi bi-shop" },
+  ];
   useEffect(() => {
     if (token && user) {
       navigate("/pos");
@@ -51,21 +58,35 @@ const Login = () => {
           />
           <label htmlFor="usuario">Usuario</label>
         </div>
-        <div className="form-floating mb-3">
-          <input
-            className="form-control mb-2 form-control-lg"
-            placeholder="Contraseña"
-            type="password"
-            autoComplete="current-password"
-            id="password"
-            value={credentials.password}
-            onChange={(e) =>
-              setCredentials({ ...credentials, password: e.target.value })
-            }
-            required
-          />
-          <label htmlFor="password">Contraseña</label>
-        </div>
+       <div className="form-floating mb-3 position-relative">
+      <input
+        className="form-control mb-2 form-control-lg pe-5" // padding right extra
+        placeholder="Contraseña"
+        type={showPassword ? "text" : "password"}
+        autoComplete="current-password"
+        id="password"
+        value={credentials.password}
+        onChange={(e) =>
+          setCredentials({ ...credentials, password: e.target.value })
+        }
+        required
+      />
+      <label htmlFor="password">Contraseña</label>
+
+      {/* Botón para mostrar/ocultar */}
+      <button
+        type="button"
+        className="btn btn-sm btn-outline-secondary position-absolute top-50 end-0 translate-middle-y me-2"
+        onClick={() => setShowPassword(!showPassword)}
+        style={{ border: "none", background: "transparent" }}
+      >
+        {showPassword ? (
+          <i className="bi bi-eye-slash"></i> // Bootstrap Icon
+        ) : (
+          <i className="bi bi-eye"></i> // Bootstrap Icon
+        )}
+      </button>
+    </div>
         <div className="form-floating">
           <select
             value={credentials.compania}
@@ -78,9 +99,12 @@ const Login = () => {
               });
             }}
           >
-            <option value="0">Selecione compañia</option>
-            <option value={201}>Farmacia</option>
-            <option value={147}>Farmacia2</option>
+            {companies.map((comp) => (
+              <option key={comp.id} value={comp.id}>
+                <i className={comp.icon}></i>
+                {comp.shopName}
+              </option>
+            ))}
           </select>
           <label htmlFor="compania">Compañía</label>
         </div>

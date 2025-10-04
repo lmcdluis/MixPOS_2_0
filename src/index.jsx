@@ -4,6 +4,7 @@ import App from './App';
 import "bootstrap/dist/css/bootstrap.css";
 import './App.css';
 import { AppProviders } from './AppProviders';
+import "antd/dist/reset.css";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

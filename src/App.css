@@ -40,9 +40,11 @@ border: 1px solid rgba(255, 255, 255, 1) !important;
 }
 
 .side-bar {
-    max-width: 240px;
-    background-color: #05434c;
-    color: #fff;
+    position: sticky !important;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    min-height: 100vh !important;
     /* border-radius: 0 20px 20px 0; */
 }
 
@@ -60,6 +62,17 @@ border: 1px solid rgba(255, 255, 255, 1) !important;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#87D0ED",
             endColorstr="#FAFAFA",
             GradientType=0);
+}
+
+.profile-menu{
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+}
+
+.profile-menu:hover {
+    cursor: pointer;
+    background-color: rgba(5, 5, 5, 0.06);
 }
 
 .submenu-item {
@@ -111,4 +124,9 @@ border: 1px solid rgba(255, 255, 255, 1) !important;
 
 .name-user {
     color: teal;
+}
+
+.sidebar-menu a{
+    text-decoration: none;
+    color: inherit;
 }

@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import apiClient from "../api/apiClient";
 import SkeletonCard from "../components/SkeletonCard";
 
-const PosDashboardPage = ({ id }) => {
+const PosDashboardPage = () => {
   const [productos, setProductos] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [almacenes, setAlmacenes] = useState(null);
+  const [loadingProd, setLoadingProd] = useState(false);
   const [error, setError] = useState(null);
 
   const getProductos = async () => {
-    setLoading(true);
+    setLoadingProd(true);
     setError(null);
     try {
       const response = await apiClient.get(
@@ -25,25 +26,57 @@ const PosDashboardPage = ({ id }) => {
     } catch (error) {
       setError("Error al cargar los productos", error);
     } finally {
-      setLoading(false);
+      setLoadingProd(false);
     }
   };
+
+  const getAlmacenes = async () => {
+    setLoadingAlm(true);
+    setError(null);
+    try {
+      const response = await apiClient.get(
+        "/api/Catalogo/obtenerAlmacenes",
+        true
+      );
+      if (response) {
+        setAlmacenes(response);
+      } else {
+        setError("Error al cargar los almacenes");
+      }
+    } catch (error) {
+      setError("Error al cargar los almacenes", error);
+    } finally {
+      setLoadingAlm(false);
+    }
+  };
+  const [loadingAlm, setLoadingAlm] = useState(false);
+
+  const loading = loadingProd || loadingAlm;
 
   useEffect(() => {
     getProductos();
   }, []);
 
   return (
-    <div className="container">
-      <div className="row mt-3">
-        <div className="col-md-3">
-          {loading ? (
-            <SkeletonCard />
-          ) : productos ? (
-            <CardInfo title="Productos" value={productos.length} />
-          ) : (
-            <p>{error || "No hay productos"}</p>
-          )}
+    <div
+      className="p-4 m-0"
+    >
+      <div className="row">
+        <div className="col-lg-4 col-md-3 col-sm-12">
+          <CardInfo
+            title="Productos Activos"
+            value={productos ? productos.length : 0}
+            percentage="+5% desde ayer"
+            loading={loading}
+          />
+        </div>
+        <div className="col-lg-4 col-md-3 col-sm-12">
+          <CardInfo
+            title="Almacenes"
+            value={almacenes ? almacenes.length : 0}
+            percentage="+5% desde ayer"
+            loading={loading}
+          />
         </div>
       </div>
     </div>

@@ -1,130 +1,96 @@
 import MainLogo from "./MainLogo";
-import { NavLink, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import useMenu from "../utils/useMenu";
+import { Layout, Menu } from "antd";
 import LogoutButton from "./LogoutButton";
-import { Skeleton, Stack } from "@chakra-ui/react";
-import  useMenu  from "../utils/useMenu"; // asegúrate de importarlo bien
 
-const SideBar = () => {
-  const [openMenu, setOpenMenu] = useState(null);
+const SideBar = ({ collapsed }) => {
   const location = useLocation();
+  const { Sider } = Layout;
+  const navigate = useNavigate();
 
   // 👉 Hook personalizado para cargar el menú
   const { menu, loading, error, refetch } = useMenu();
 
-  // 👉 Mantener abierto el submenú si la ruta coincide con algún hijo
-  useEffect(() => {
-    if (menu && menu.length > 0) {
-      menu.forEach((item, index) => {
-        if (
-          item.children &&
-          item.children.some((subItem) => subItem.path === location.pathname)
-        ) {
-          setOpenMenu(index);
-        }
-      });
-    }
-  }, [location.pathname, menu]);
+  const menuConverted = menu.map((item) => ({
+    key: item.path || item.title,
+    icon: <i className={item.icon}></i>,
+    label: item.title,
+    children: item.children
+      ? item.children.map((child) => ({
+          key: child.path || child.title,
+          icon: <i className={child.icon}></i>,
+          label: child.title,
+        }))
+      : null,
+  }));
 
-  const toggleSubmenu = (index) => {
-    setOpenMenu(openMenu === index ? null : index);
+  const handleClick = ({ key }) => {
+    const clickedItem = findMenuItem(menuConverted, key);
+
+    if (clickedItem?.children) {
+      // tiene hijos → solo expande/colapsa
+      return;
+    }
+
+    // no tiene hijos → navegamos
+    navigate(key);
   };
 
+  const findMenuItem = (items, key) => {
+    for (const item of items) {
+      if (item.key === key) return item;
+      if (item.children) {
+        const found = findMenuItem(item.children, key);
+        if (found) return found;
+      }
+    }
+    return null;
+  };
+
+  if (loading) return <p>Cargando menú...</p>;
+  if (error) return (
+    <p>
+      Error al cargar el menú. <button onClick={refetch}>Reintentar</button>
+    </p>
+  );
+
+  const selectedKey =
+    menuConverted
+      .flatMap((item) => [
+        item.key,
+        ...(item.children ? item.children.map((child) => child.key) : []),
+      ])
+      .find((key) => location.pathname.includes(key)) || "1";
+
   return (
-    <>
-      {loading && (
-        <Stack>
-          <Skeleton height={"20px"} />
-        </Stack>
-      )}
-      {error && <p className="text-danger">{error}</p>}
-      <div className="col-lg-2">
-        <div
-          className="offcanvas offcanvas-start show side-bar"
-          id="offcanvas"
-          aria-labelledby="offcanvasLabel"
-          data-bs-scroll="true"
-        >
-          {/* Logo */}
-          <div className="offcanvas-header d-flex justify-content-center">
-            <div>
-              <MainLogo size={"small"} linked />
-            </div>
-          </div>
-
-          {/* Menú */}
-          <div className="offcanvas-body">
-            <ul className="list-unstyled">
-              {menu?.map((item, index) => (
-                <li key={index} className="mb-2">
-                  {item.children ? (
-                    <>
-                      {/* Botón para menú con hijos */}
-                      <button
-                        onClick={() => toggleSubmenu(index)}
-                        className="btn w-100 d-flex justify-content-between align-items-center text-start text-white main-menu-item"
-                      >
-                        <span>
-                          {item.icon && <i className={`${item.icon} me-2`}></i>}
-                          {item.title}
-                        </span>
-                        <i
-                          className={`bi ${
-                            openMenu === index
-                              ? "bi-chevron-up"
-                              : "bi-chevron-down"
-                          }`}
-                        ></i>
-                      </button>
-
-                      {/* Submenú */}
-                      {openMenu === index && (
-                        <ul className="list-unstyled ps-4 mt-2 p-2">
-                          {item.children.map((subItem, subIndex) => (
-                            <li key={subIndex} className="mb-1 submenu-item">
-                              <NavLink
-                                to={subItem.path}
-                                className={({ isActive }) =>
-                                  `d-flex align-items-center text-decoration-none ${
-                                    isActive ? "active-link" : "text-white"
-                                  }`
-                                }
-                              >
-                                {subItem.icon && (
-                                  <i className={`${subItem.icon} me-2`}></i>
-                                )}
-                                {subItem.title}
-                              </NavLink>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </>
-                  ) : (
-                    // Menú simple (sin hijos)
-                    <NavLink
-                      to={item.path}
-                      className={({ isActive }) =>
-                        `btn d-flex align-items-center text-decoration-none main-menu-item ${
-                          isActive ? "active-link" : "text-white"
-                        }`
-                      }
-                    >
-                      {item.icon && <i className={`${item.icon} me-2`}></i>}
-                      <span>{item.title}</span>
-                    </NavLink>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="d-flex">
-            <LogoutButton />
-          </div>
-        </div>
+    <Sider
+      width={200}
+      style={{ background: "#06535eff", minHeight: "100vh" , overflow: 'auto'}}
+      trigger={null}
+      collapsible
+      collapsed={collapsed}
+      className="side-bar"
+      breakpoint="lg"
+      collapsedWidth={collapsed ? 80 : 200}
+      loading={loading}
+    >
+      <div className="text-center my-3">
+        <MainLogo size={"small"} linked />
       </div>
-    </>
+      <Menu
+        mode="inline"
+        selectedKeys={[selectedKey]}
+        theme="dark"
+        style={{  borderRight: 0, background: "#06535eff" }}
+        items={menuConverted}
+        className="sidebar-menu"
+        onClick={handleClick}
+      />
+        <div className="ms-auto">
+          <LogoutButton />
+        </div>
+    </Sider>
   );
 };
 

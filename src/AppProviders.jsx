@@ -1,21 +1,23 @@
 // AppProviders.jsx
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Provider as ReduxProvider } from "react-redux";
-import  store  from "./redux/store"; // ajusta tu ruta
-
-const theme = extendTheme({
-  config: {
-    initialColorMode: "light",
-    useSystemColorMode: false,
-  },
-});
+import store from "./redux/store"; // ajusta tu ruta
+import { ConfigProvider, theme } from "antd";
 
 export const AppProviders = ({ children }) => {
   return (
     <ReduxProvider store={store}>
-      <ChakraProvider theme={theme}>
+      <ConfigProvider
+        theme={{
+          algorithm: theme.lightAlgorithm,
+          token: {
+            colorPrimary: "#05434c",
+            borderRadius: 12,
+            fontFamily: "Roboto, sans-serif",
+          },
+        }}
+      >
         {children}
-      </ChakraProvider>
+      </ConfigProvider>
     </ReduxProvider>
   );
 };

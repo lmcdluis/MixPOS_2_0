@@ -22,5 +22,11 @@
     "component": "medicamentos",
     "layout": "POSDashboardLayout",
     "protected": true
+  },
+  {
+    "path": "/productos/generales",
+    "component": "generales",
+    "layout": "POSDashboardLayout",
+    "protected": true
   }
 ]

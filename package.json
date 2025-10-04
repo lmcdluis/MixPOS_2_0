@@ -9,14 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@chakra-ui/react": "2.8.2",
-    "@chakra-ui/theme-utils": "2.0.21",
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
     "@reduxjs/toolkit": "^1.9.0",
+    "antd": "^5.27.4",
     "axios": "^1.12.1",
     "bootstrap": "^5.3.8",
-    "framer-motion": "^7.6.6",
     "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -1,25 +1,23 @@
-// PosDashboard.jsx
-import Navbar from "../Navbar";
+import { Layout} from "antd";
 import SideBar from "../SideBar";
-import WelcomeUser from "../WelcomeUser";
+import Navbar from "../Navbar";
+import { useState } from "react";
+import { Content } from "antd/es/layout/layout";
 
-const PosDashboardLayout = ({ children }) => {
-
+const PosDashboardLayout = ({children}) => {
+  const [collapsed, setCollapsed] = useState(false);
   return (
-    <div className="">
-      <div className="container-fluid">
-        <div className="row">
-          <SideBar />
-           <Navbar />
-          <div className="col px-0">
-            <div className="container min-vh-100 dashboard-container">
-              <WelcomeUser/>
-              <div className="">{children}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Layout style={{ minHeight: "100vh", margin: 0, padding: 0 }}>
+      <Layout>
+        <SideBar collapsed={collapsed}/>
+        <Layout>
+          <Navbar onToggleSidebar={() => setCollapsed(!collapsed)}  />
+          <Content className="dashboard-container" style={{overflow: 'auto'}}>
+              {children}
+          </Content>
+        </Layout>
+      </Layout>
+    </Layout>
   );
 };
 
